@@ -1,0 +1,33 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h5,
+h4,
+h3,
+h2,
+h1 {
+    margin-bottom: 0 !important;
+}
+
+body,
+.d-grid {
+    height: 100dvh;
+    background: var(--mdb-primary);
+}
+
+.d-grid {
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+}
+.d-grid[data-color="red"] {
+    background: tomato;
+}
+.d-grid[data-color="green"] {
+    background: lime;
+}
