@@ -31,3 +31,12 @@ body,
 .d-grid[data-color="green"] {
     background: lime;
 }
+
+/* Imagenes */
+#levesDatas #image {
+    height: 400px;
+}
+
+.fill-detail {
+    fill: lime;
+}

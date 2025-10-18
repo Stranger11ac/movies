@@ -1,12 +1,14 @@
 $(document).ready(function () {
+    // #######################################################################
+    // Insertar niveles ######################################################
     $("#formInsertMovies").on("submit", function (event) {
         event.preventDefault();
         submitLevels($(this));
     });
+    var myApiToken = "Mytokendelaapi";
 
     function submitLevels(form) {
         const levelVal = $(form).find("#levelName").val();
-        const myApiToken = "Mytokendelaapi";
 
         const nivelData = {
             ClasificacionDesc: levelVal,
@@ -21,14 +23,14 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(nivelData),
             success: function (response) {
-                const msg = response.mensaje || "Mensaje"
+                const msg = response.mensaje || "Mensaje";
                 console.log("Respuesta del servidor:", response);
                 // alert(`Mensage recibido: ${response.mensaje}`);
-                toast(msg, "success", 5000, "top-end")
+                toast(msg, "success", 5000, "top-end");
                 variableIndefinida = 1;
             },
             error: function (xhr, status, error) {
-                toast(error, "error", 8000, "top-center")
+                toast(error, "error", 8000, "top-center");
                 console.error("Error:", error);
             },
             complete: function () {
@@ -37,10 +39,42 @@ $(document).ready(function () {
         });
     }
 
-    // toast("Hola", "success", 5000, "top-end");
-    // setTimeout(() => {
-    //     toast("Adios", "error", 5000, "top-start");
-    // }, 6000);
+    // #######################################################################
+    // Obtener niveles #######################################################
+    const levelsContainer = $("#levesDatas #image");
+    if (levelsContainer.length > 0) {
+        // El contenedor existe, puedes realizar acciones aquí
+        getLevels(levelsContainer);
+    }
+
+    function getLevels($container) {
+        $.ajax({
+            url: "http://127.0.0.1:8220/obtener_clasificaciones",
+            type: "GET",
+            // headers: {
+            //     Authorization: "Bearer " + myApiToken,
+            // },
+            contentType: "application/json",
+            success: function (response) {
+                console.log("Respuesta del servidor:", response);
+                $container.empty();
+                $($container).append(
+                    response.data.map(
+                        (level) => `<div class="level-item">
+                                        <h3>${level.ClasificacionDesc}</h3>
+                                    </div>`
+                    )
+                );
+            },
+            error: function (xhr, status, error) {
+                toast(error, "error", 8000, "top-center");
+                console.error("Error:", error);
+            },
+            complete: function () {
+                console.log("Petición finalizada.");
+            },
+        });
+    }
 
     function toast(titleToast, iconToast, timeToast, positionToast) {
         const Toast = Swal.mixin({
@@ -59,4 +93,26 @@ $(document).ready(function () {
             title: titleToast,
         });
     }
+
+    // #######################################################################
+    // Instrucciones extra ###################################################
+    // #######################################################################
+
+    // toast("Hola", "success", 5000, "top-end");
+    // setTimeout(() => {
+    //     toast("Adios", "error", 5000, "top-start");
+    // }, 6000);
+
+    // const fName = "salvador";
+    // const numOne = 1;
+    // const lName = "Hernandez";
+    // const numeTwo = "2";
+    // const numTree = 3;
+
+    // let operation;
+
+    // operation = `${numOne , numeTwo}`
+    // console.log(numOne , numeTwo);
+
+    // toast(operation, "info", 8000, "center")
 });
