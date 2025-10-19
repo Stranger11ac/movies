@@ -5,7 +5,12 @@ $(document).ready(function () {
         event.preventDefault();
         submitLevels($(this));
     });
-    var myApiToken = "Mytokendelaapi";
+
+    $.ajaxSetup({
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
+        },
+    });
 
     function submitLevels(form) {
         const levelVal = $(form).find("#levelName").val();
@@ -17,15 +22,11 @@ $(document).ready(function () {
         $.ajax({
             url: "http://127.0.0.1:8220/registrar_clasificaciones",
             type: "POST",
-            // headers: {
-            //     Authorization: "Bearer " + myApiToken,
-            // },
             contentType: "application/json",
             data: JSON.stringify(nivelData),
             success: function (response) {
                 const msg = response.mensaje || "Mensaje";
                 console.log("Respuesta del servidor:", response);
-                // alert(`Mensage recibido: ${response.mensaje}`);
                 toast(msg, "success", 5000, "top-end");
                 variableIndefinida = 1;
             },
@@ -43,7 +44,6 @@ $(document).ready(function () {
     // Obtener niveles #######################################################
     const levelsContainer = $("#levesDatas #image");
     if (levelsContainer.length > 0) {
-        // El contenedor existe, puedes realizar acciones aquí
         getLevels(levelsContainer);
     }
 
@@ -51,9 +51,6 @@ $(document).ready(function () {
         $.ajax({
             url: "http://127.0.0.1:8220/obtener_clasificaciones",
             type: "GET",
-            // headers: {
-            //     Authorization: "Bearer " + myApiToken,
-            // },
             contentType: "application/json",
             success: function (response) {
                 console.log("Respuesta del servidor:", response);
