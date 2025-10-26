@@ -1,11 +1,11 @@
 <?php include 'componentes.php'; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <?php
-    $title = "Clacificaiones";
+    $title = "Clasificaciones";
     headContent($title);
     ?>
 </head>
@@ -15,6 +15,9 @@
         <div class="card" id="levesDatas">
             <div class="card-header text-center">Clasificaiones</div>
             <div class="card-body">
+                <div id="loader" class="justify-content-center align-items-center d-none">
+                    <i class="ic-iconify loader"></i>
+                </div>
                 <div id="image">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 797.5 834.5"
                         xmlns:xlink="http://www.w3.org/1999/xlink" role="img" artist="Katerina Limpitsouni"

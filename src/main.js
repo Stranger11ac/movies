@@ -1,9 +1,14 @@
 $(document).ready(function () {
+    const myToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTdHJhbmdlcjExIiwiZXhwIjoxNzYxODg2NTA0fQ.ut0eTVIEQTSuUjrZo6z4VULAFsJJ-dWWKoXkSgIGxkM";
     // #######################################################################
     // Insertar niveles ######################################################
-    $("#formInsertMovies").on("submit", function (event) {
+    $("#formInsertLeves").on("submit", function (event) {
         event.preventDefault();
         submitLevels($(this));
+    });
+    $("#formInsertMovies").submit(function (event) {
+        event.preventDefault();
+        submitMovies($(this));
     });
 
     $.ajaxSetup({
@@ -23,6 +28,9 @@ $(document).ready(function () {
             url: "http://127.0.0.1:8220/registrar_clasificaciones",
             type: "POST",
             contentType: "application/json",
+            headers: {
+                Authorization: "Bearer " + myToken,
+            },
             data: JSON.stringify(nivelData),
             success: function (response) {
                 const msg = response.mensaje || "Mensaje";
@@ -40,6 +48,36 @@ $(document).ready(function () {
         });
     }
 
+    function submitMovies(form) {
+        const formData = new FormData(form[0]);
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+        console.log(jsonData);
+
+        // $.ajax({
+        //     url: "http://127.0.0.1:8220/registrar_clasificaciones",
+        //     type: "POST",
+        //     contentType: "application/json",
+        //     data: JSON.stringify(jsonData),
+        //     success: function (response) {
+        //         const msg = response.mensaje || "Mensaje";
+        //         console.log("Respuesta del servidor:", response);
+        //         toast(msg, "success", 5000, "top-end");
+        //         variableIndefinida = 1;
+        //     },
+        //     error: function (xhr, status, error) {
+        //         toast(error, "error", 8000, "top-center");
+        //         console.error("Error:", error);
+        //     },
+        //     complete: function () {
+        //         console.log("Petición finalizada.");
+        //     },
+        // });
+    }
+
     // #######################################################################
     // Obtener niveles #######################################################
     const levelsContainer = $("#levesDatas #image");
@@ -52,16 +90,23 @@ $(document).ready(function () {
             url: "http://127.0.0.1:8220/obtener_clasificaciones",
             type: "GET",
             contentType: "application/json",
+            headers: {
+                Authorization: "Bearer " + myToken,
+            },
             success: function (response) {
-                console.log("Respuesta del servidor:", response);
                 $container.empty();
-                $($container).append(
-                    response.data.map(
-                        (level) => `<div class="level-item">
-                                        <h3>${level.ClasificacionDesc}</h3>
-                                    </div>`
-                    )
-                );
+                $("#loader").addClass("d-flex").removeClass("d-none").css("height", "50px");
+                $container.css("height", "auto");
+
+                setTimeout(() => {
+                    $("#loader").removeClass("d-flex").addClass("d-none");
+                    setTimeout(() => {
+                        console.log(response.data[0]);
+                        response.data.forEach((level) => {
+                            $($container).append(`<div>${level.ClasificacionDesc}</div>`);
+                        });
+                    }, 50);
+                }, 1000);
             },
             error: function (xhr, status, error) {
                 toast(error, "error", 8000, "top-center");

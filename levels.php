@@ -1,7 +1,7 @@
 <?php include 'componentes.php'; ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <?php
             $title = "Clasificaiones";
@@ -10,7 +10,7 @@
     </head>
     <body>
         <section class="d-grid">
-            <form class="card" id="formInsertMovies">
+            <form class="card" id="formInsertLeves">
                 <div class="card-header">
                     <h5 class="card-title">Agregar Clasificaciones</h5>
                 </div>
