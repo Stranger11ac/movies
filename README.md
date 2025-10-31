@@ -121,16 +121,3 @@ Esto evita accesos no autorizados y protege los datos transmitidos entre cliente
 
 ---
 
-## 💬 Autor
-
-**Salvador Hernández**  
-📧 Contacto: [tu-email@ejemplo.com]  
-🌐 GitHub: [https://github.com/tu-usuario](https://github.com/tu-usuario)
-
----
-
-## 🪪 Licencia
-
-Este proyecto está bajo la licencia **MIT**. Puedes usarlo y modificarlo libremente con atribución al autor original.
-
----
