@@ -7,9 +7,8 @@ El objetivo del proyecto es ofrecer una interfaz web moderna que permita a los u
 
 ## 🚀 Inicio rápido
 
----
 
-### 2️⃣ Verificar instalación de Node.js y npm
+### 1️⃣ Verificar instalación de Node.js y npm
 
 Antes de instalar las dependencias, asegúrate de tener **Node.js** y **npm** correctamente instalados en tu sistema:
 
@@ -28,7 +27,7 @@ Rcuerda descargar la version para windows o segun sea el caso para tu sistema op
 
 ---
 
-### 3️⃣ Iniciar Proyecto e instalar dependencias
+### 2️⃣ Iniciar Proyecto e instalar dependencias
 
 El proyecto NPM se inicia de forma rapida de la siguiente manera:
 
@@ -55,7 +54,7 @@ Esto descargará los módulos definidos en el archivo `package.json`.
 
 ---
 
-### 4️⃣ Ejecutar el proyecto
+### 3️⃣ Ejecutar el proyecto
 
 Para iniciar el entorno de desarrollo, usa:
 
@@ -119,5 +118,4 @@ Esto evita accesos no autorizados y protege los datos transmitidos entre cliente
 - Ejecuta `npm update` regularmente para mantener tu entorno actualizado.  
 - Si trabajas en equipo, utiliza un archivo `.env` (no lo subas a GitHub) para gestionar variables privadas.
 
----
 
