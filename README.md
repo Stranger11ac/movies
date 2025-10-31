@@ -28,9 +28,24 @@ Rcuerda descargar la version para windows o segun sea el caso para tu sistema op
 
 ---
 
-### 3️⃣ Instalar dependencias
+### 3️⃣ Iniciar Proyecto e instalar dependencias
 
-Una vez dentro del proyecto, instala todas las dependencias necesarias con:
+El proyecto NPM se inicia de forma rapida de la siguiente manera:
+
+```bash
+npm init -y
+```
+
+Sin embargo, si deseas cambiar cada aspecto por separado, inicia el proyecto de esta manera:
+
+```bash
+npm init
+```
+
+Esto iniciara el proceso de llenado del proyecto, donde te preguntará aspectos como el nombre del autor, etiquetas, link del repositorio, archivos iniciales, entre otros.
+Tambien se puede modificar posteriormente en el archivo `package.json`
+
+Una vez dentro del proyecto, instala todas las dependencias necesarias:
 
 ```bash
 npm install
@@ -43,12 +58,6 @@ Esto descargará los módulos definidos en el archivo `package.json`.
 ### 4️⃣ Ejecutar el proyecto
 
 Para iniciar el entorno de desarrollo, usa:
-
-```bash
-npm start
-```
-
-O si tu proyecto tiene un script diferente en `package.json`, puedes ejecutar:
 
 ```bash
 npm run dev
