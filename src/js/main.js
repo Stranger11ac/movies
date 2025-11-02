@@ -26,6 +26,8 @@ $(document).ready(function () {
             success: function (response) {
 
                 $(form)[0].reset();
+                console.log(`Estatus: ${response.status}`);
+                
                 toast({
                     icon: "success",
                     title: "Se inicio sesion correctamente",

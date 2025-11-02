@@ -7,7 +7,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="es" data-mdb-theme="light">
+<html lang="es" data-mdb-theme="dark">
     <head>
         <?php headContent("Inicio de Sesion"); ?>
     </head>
