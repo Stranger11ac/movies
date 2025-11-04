@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,7 +10,13 @@
 :root {
     --radius: 10px;
     --radius-btn: 50%;
-    --transition: cubic-bezier(0.4, 0, 0.2, 1);
+    --detail-bg: rgb(var(--mdb-info-rgb));
+    --detail-bg-hover: rgba(var(--mdb-info-rgb), 0.7);
+    --transition: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+::selection {
+    background: var(--detail-bg);
+    color: var(--mdb-light);
 }
 
 html {
@@ -18,10 +26,10 @@ html {
 
 body {
     font-family: var(--mdb-font-roboto);
-    color: var(--mbd-body-color);
-    background-color: var(--mbd-body-bg);
+    color: var(--mdb-body-color);
     min-height: 100dvh; /* dynamic viewport height */
-    background: var(--mdb-primary);
+    background: var(--detail-bg);
+    max-width: 100vw;
 }
 
 main {
@@ -29,4 +37,49 @@ main {
     display: grid;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    .index-icons {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(var(--icon-size), 1fr));
+        grid-auto-rows: var(--icon-size);
+        place-items: center;
+        font-size: 2.2rem;
+        z-index: 0;
+        height: 100vh;
+        width: 100vw;
+
+        &.active {
+            opacity: 0.7;
+        }
+
+        i {
+            opacity: 0.2;
+            transform: rotate(45deg);
+            transition: 0.3s ease;
+
+            &:hover {
+                opacity: 0.5;
+                transform: rotate(45deg) scale(1.1);
+            }
+        }
+    }
+}
+
+main main {
+    z-index: 1;
+}
+
+main > * {
+    z-index: 1;
+    height: var(--icon-size);
+}
+
+.btn-detail {
+    background: var(--detail-bg);
+    color: var(--mdb-light);
+}
+.btn-detail:hover {
+    background: var(--detail-bg-hover);
 }
