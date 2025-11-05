@@ -15,8 +15,8 @@
     --transition: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 ::selection {
-    background: var(--detail-bg);
-    color: var(--mdb-light);
+    color: var(--detail-bg);
+    background: var(--mdb-light);
 }
 
 html {
@@ -38,6 +38,10 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
+
+    &:where(:has(.index-icons)) {
+        overflow: hidden !important;
+    }
 
     .index-icons {
         position: absolute;
@@ -67,10 +71,6 @@ main {
     }
 }
 
-main main {
-    z-index: 1;
-}
-
 main > * {
     z-index: 1;
     height: var(--icon-size);
@@ -82,4 +82,9 @@ main > * {
 }
 .btn-detail:hover {
     background: var(--detail-bg-hover);
+}
+
+/* Titulos */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
 }

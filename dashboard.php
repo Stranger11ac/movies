@@ -12,6 +12,7 @@
         <h2>Bienvenido <?php echo $_SESSION['username'] ?></h2>
         <h2><?php echo $_SESSION['fullname'] ?></h2>
         <h2><?php echo $_SESSION['role'] ?></h2>
+
         <?php footerScripts(); ?>
     </body>
 </html>

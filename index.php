@@ -42,22 +42,8 @@
                     </div>
                 </div>
             </form>
-            <div class="index-icons" id="indexIcons" style="--icon-size: 50px;" data-icon-size="50">
-                <i class="fas fa-clapperboard"></i>
-                <i class="fas fa-compact-disc"></i>
-                <i class="fas fa-film"></i>
-                <i class="fas fa-ticket"></i>
-                <i class="fas fa-ticket-simple"></i>
-                <i class="fas fa-video"></i>
-            </div>
+            <div class="index-icons" id="indexIcons" style="--icon-size: 50px;" data-icon-size="50"></div>
         </main>
-
-        <main>
-            <main>
-                
-            </main>
-        </main>
-
         <?php footerScripts(); ?>
     </body>
 </html>

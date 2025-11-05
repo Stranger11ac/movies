@@ -11,13 +11,10 @@
             echo json_encode([
                 "success" => false,
                 "status" => 400,
-                "message" => "Usuario y contraseña son requeridos",
-                "username" => $userPOST,
-                "password" => $passPOST
+                "message" => "Usuario y contraseña son requeridos"
             ]);
             exit;
         }
-
 
         $url = "http://localhost:8220/login";
         $data = array("username" => $userPOST, "password" => $passPOST);
@@ -58,7 +55,7 @@
             // Guardar datos en la sesión
             $_SESSION['username'] = strtolower($payload['sub'] ?? 'Sin Usuario');
             $_SESSION['fullname'] = strtolower($payload['fullname'] ?? 'Sin Nombre');
-            $_SESSION['role'] = strtolower($payload['roluser'] ?? 'Sin Rol');
+            $_SESSION['role'] = strtolower($payload['role'] ?? 'Sin Rol');
         }
 
         // Enviar al frontend
@@ -66,8 +63,9 @@
         echo json_encode([
             "success" => true,
             "status" => $httpcode,
-            "fullname" => $payload['fullname'],
+            // "fullname" => $payload['fullname'],
             "json" => $payload,
+            // "response" => $json
         ]);
     } else {
         echo json_encode([

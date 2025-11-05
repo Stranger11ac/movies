@@ -31,7 +31,7 @@ $(document).ready(function () {
                 toast({
                     icon: "success",
                     title: `Se inicio sesion correctamente <br> Bienvenido ${response.fullname}`,
-                    time: 200000,
+                    time: 2000,
                     position: "top",
                     onClose: function () {
                         window.location.href = "dashboard.php";
