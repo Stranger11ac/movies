@@ -10,13 +10,18 @@
 :root {
     --radius: 10px;
     --radius-btn: 50%;
-    --detail-bg: rgb(var(--mdb-info-rgb));
-    --detail-bg-hover: rgba(var(--mdb-info-rgb), 0.7);
+    --detail-bg: rgb(var(--mdb-warning-rgb));
+    --detail-bg-hover: rgba(var(--mdb-warning-rgb), 0.7);
     --transition: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 ::selection {
     color: var(--detail-bg);
     background: var(--mdb-light);
+}
+.card ::selection {
+    background-color: var(--mdb-card-bg);
+    background: var(--mdb-card-bg);
+    color: var(--detail-bg);
 }
 
 html {
@@ -38,6 +43,11 @@ main {
     justify-content: center;
     align-items: center;
     position: relative;
+
+    & > * {
+        z-index: 1;
+        height: var(--icon-size);
+    }
 
     &:where(:has(.index-icons)) {
         overflow: hidden !important;
@@ -71,20 +81,22 @@ main {
     }
 }
 
-main > * {
-    z-index: 1;
-    height: var(--icon-size);
-}
-
 .btn-detail {
     background: var(--detail-bg);
     color: var(--mdb-light);
-}
-.btn-detail:hover {
-    background: var(--detail-bg-hover);
+    transition: background 0.3s ease;
+
+    &:hover {
+        background: var(--detail-bg-hover);
+    }
 }
 
 /* Titulos */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0 !important;
 }

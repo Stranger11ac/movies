@@ -25,8 +25,6 @@ $(document).ready(function () {
             contentType: "application/json",
             success: function (response) {
                 $(form)[0].reset();
-                console.log(`Estatus: ${response.status}`);
-                console.log(response);
 
                 toast({
                     icon: "success",
@@ -41,16 +39,12 @@ $(document).ready(function () {
             error: function (xhr, status, error, response) {
                 toast({
                     icon: "error",
-                    title: `Error al intentar Iniciar sesion. <br> Codigo ${xhr.status}`,
+                    title: `Error al intentar Iniciar sesión. <br> Codigo ${xhr.status}`,
                     time: 5000,
                     position: "center",
                 });
                 console.error("--- Este es el error resultante de ajax ---");
                 console.error(error);
-                console.log(xhr);
-                console.log(status);
-                console.log(response);
-                
             },
         });
     }
