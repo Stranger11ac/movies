@@ -87,24 +87,40 @@ def verify_token(Authorization: Optional[str] = Header(None)):
 def login(credentials: LoginRequest):
     conn = get_connection()
     if conn is None:
-        raise HTTPException(status_code=500, detail="Error de conexión con la base de datos")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "status": 500, "message": "Error de conexión con la base de datos"},
+        )
 
     cursor = conn.cursor(dictionary=True)
     try:
+        if not credentials.username or not credentials.password:
+            print("❌ Usuario o contraseña no proporcionados")
+            return JSONResponse(
+                status_code=400,
+                content={"success": False, "status": 400, "message": "Usuario y contraseña son requeridos"},
+            )
+
         cursor.execute("SELECT * FROM users WHERE username = %s", (credentials.username,))
         user = cursor.fetchone()
 
         if not user:
-            raise HTTPException(status_code=401, detail="Usuario no encontrado")
+            print("❌ Usuario no encontrado")
+            return JSONResponse(
+                status_code=401,
+                content={"success": False, "status": 401, "message": "Usuario no encontrado"},
+            )
 
         hashed_password = hashlib.sha256(credentials.password.encode()).hexdigest()
         if hashed_password != user["password"]:
-            raise HTTPException(status_code=401, detail="Contraseña incorrecta")
-        
-        cursor.execute("SELECT * FROM roles WHERE id =%s", (user["rolid"],))
-        roles = cursor.fetchone()
+            print("❌ Contraseña incorrecta")
+            return JSONResponse(
+                status_code=401,
+                content={"success": False, "status": 401, "message": "Contraseña incorrecta"},
+            )
 
-        # ✅ Ahora pasamos también el fullname al token
+        cursor.execute("SELECT * FROM roles WHERE id = %s", (user["rolid"],))
+        roles = cursor.fetchone()
         token = create_token(user["username"], user["fullname"], roles["Title"])
 
         return {
@@ -117,7 +133,6 @@ def login(credentials: LoginRequest):
         conn.close()
 
 # ------------------------ Endpoints protegidos ------------------------
-
 @app.post("/insert_movie")
 def insert_movie(structure: movieStructure, user_data: dict = Depends(verify_token)):
     """
@@ -148,7 +163,6 @@ def insert_movie(structure: movieStructure, user_data: dict = Depends(verify_tok
         cursor.close()
         conn.close()
 
-
 @app.post("/insert_level")
 def insert_level(structure: levelStructure, user_data: dict = Depends(verify_token)):
     """
@@ -170,7 +184,6 @@ def insert_level(structure: levelStructure, user_data: dict = Depends(verify_tok
     finally:
         cursor.close()
         conn.close()
-
 
 @app.get("/get_movies/")
 def get_movies(user_data: dict = Depends(verify_token)):
@@ -195,7 +208,6 @@ def get_movies(user_data: dict = Depends(verify_token)):
     finally:
         cursor.close()
         conn.close()
-
 
 @app.get("/get_level/")
 def get_level(user_data: dict = Depends(verify_token)):

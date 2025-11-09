@@ -23,6 +23,7 @@ $(document).ready(function () {
             data: JSON.stringify(jsonData),
             processData: false,
             contentType: "application/json",
+            dataType: "json",
             success: function (response) {
                 $(form)[0].reset();
 
@@ -37,14 +38,15 @@ $(document).ready(function () {
                 });
             },
             error: function (xhr, status, error, response) {
+                const errorData = xhr.responseJSON.json || {};
                 toast({
                     icon: "error",
-                    title: `Error al intentar Iniciar sesión. <br> Codigo ${xhr.status}`,
+                    title: `Error al intentar iniciar sesión. <br><br> ${errorData.message || "Error desconocido"} <br> Código ${xhr.status}`,
                     time: 5000,
                     position: "center",
                 });
                 console.error("--- Este es el error resultante de ajax ---");
-                console.error(error);
+                console.error(xhr.status, errorData);
             },
         });
     }

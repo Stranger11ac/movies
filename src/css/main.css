@@ -86,8 +86,9 @@ main {
     color: var(--mdb-light);
     transition: background 0.3s ease;
 
+    &:focus,
     &:hover {
-        background: var(--detail-bg-hover);
+        background: var(--detail-bg-hover) !important;
     }
 }
 

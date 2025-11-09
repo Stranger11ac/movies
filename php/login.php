@@ -63,8 +63,8 @@
         echo json_encode([
             "success" => true,
             "status" => $httpcode,
-            // "fullname" => $payload['fullname'],
-            "json" => $payload,
+            "fullname" => $payload['fullname'],
+            "json" => $json
             // "response" => $json
         ]);
     } else {
@@ -72,8 +72,6 @@
             "success" => false,
             "status" => $httpcode,
             "message" => $json['message'] ?? "Error desconocido",
-            "username" => $userPOST,
-            "password" => $passPOST
         ]);
     }
 ?>
